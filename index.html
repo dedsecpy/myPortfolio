@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Aejaz — Creative Developer &amp; Designer</title>
+  <meta name="description" content="Aejaz is a creative developer and designer crafting immersive, high-performance digital experiences where clean code meets bold design." />
+  <meta name="theme-color" content="#07060f" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Aejaz — Creative Developer &amp; Designer" />
+  <meta property="og:description" content="Immersive, high-performance digital experiences where clean code meets bold design." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts: Clash Display + Satoshi (Fontshare), JetBrains Mono (Google) -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script>document.documentElement.className = 'js';</script>
+</head>
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <!-- ============ Living background ============ -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-fallback" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ Preloader ============ -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__glow"></div>
+    <div class="preloader__center">
+      <div class="preloader__name">
+        <span class="preloader__outline">AEJAZ</span>
+        <span class="preloader__fill">AEJAZ</span>
+      </div>
+      <div class="preloader__bar"><span></span></div>
+    </div>
+    <div class="preloader__foot mono">
+      <span>Portfolio ©2026</span>
+      <span class="preloader__count">0</span>
+      <span>Loading experience</span>
+    </div>
+  </div>
+
+  <!-- ============ Cursor ============ -->
+  <div class="cursor-ring" aria-hidden="true"><div class="cursor-ring__bg"></div><span class="cursor-ring__label"></span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="fx-layer" aria-hidden="true"></div>
+
+  <!-- ============ Navigation ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__bar glass">
+      <a href="#home" class="nav__logo" aria-label="Aejaz — back to top">
+        <span class="nav__logo-mark">A</span>
+        <span class="nav__logo-text">Aejaz<sup>®</sup></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <span class="nav__indicator" aria-hidden="true"></span>
+        <a href="#about" class="nav__link" data-roll>About</a>
+        <a href="#work" class="nav__link" data-roll>Work</a>
+        <a href="#skills" class="nav__link" data-roll>Skills</a>
+        <a href="#experience" class="nav__link" data-roll>Journey</a>
+        <a href="#contact" class="nav__link" data-roll>Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="palette-btn" type="button" aria-label="Change colour palette" data-magnetic="0.4" data-cursor="Theme">
+          <span class="palette-btn__swatch"></span>
+        </button>
+        <a href="#contact" class="btn btn--primary btn--small nav__cta" data-magnetic="0.3"><span data-roll>Let's talk</span></a>
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="menu" id="menu" aria-hidden="true" inert>
+    <nav class="menu__links" aria-label="Mobile">
+      <a href="#about" class="menu__link" style="--i:0"><span>01</span>About</a>
+      <a href="#work" class="menu__link" style="--i:1"><span>02</span>Work</a>
+      <a href="#skills" class="menu__link" style="--i:2"><span>03</span>Skills</a>
+      <a href="#experience" class="menu__link" style="--i:3"><span>04</span>Journey</a>
+      <a href="#contact" class="menu__link" style="--i:4"><span>05</span>Contact</a>
+    </nav>
+    <div class="menu__foot" style="--i:5">
+      <span class="mono">Say hello</span>
+      <a href="mailto:hello@aejaz.dev" class="menu__mail">hello@aejaz.dev</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__shapes" aria-hidden="true">
+        <div class="shape shape--sphere" data-shape data-x="0.37" data-y="0.25" data-mx="0.74" data-my="0.22" data-depth="1.1" data-cursor="Drag me" style="--d:.15s"></div>
+        <div class="shape shape--ring" data-shape data-x="0.86" data-y="0.42" data-mx="0.86" data-my="0.4" data-depth="0.7" data-spin="8" data-cursor="Drag me" style="--d:.3s"></div>
+        <div class="shape shape--pill" data-shape data-x="0.66" data-y="0.66" data-mx="0.34" data-my="0.585" data-depth="1.4" data-rot="-24" data-spin="-4" data-cursor="Drag me" style="--d:.45s"></div>
+        <div class="shape shape--cube" data-shape data-x="0.15" data-y="0.62" data-mx="0.5" data-my="0.27" data-depth="0.9" data-rot="18" data-spin="6" data-cursor="Drag me" style="--d:.6s"></div>
+        <div class="shape shape--sphere shape--sm" data-shape data-x="0.62" data-y="0.17" data-mx="0.18" data-my="0.25" data-depth="1.8" data-cursor="Drag me" style="--d:.75s"></div>
+      </div>
+
+      <div class="hero__inner container">
+        <div class="hero__top">
+          <span class="status-pill glass" data-hero-fade style="--d:.2s"><span class="status-pill__dot"></span>Available for new projects</span>
+          <span class="hero__tag mono" data-hero-fade style="--d:.3s">Creative Developer<br />&amp; Designer — ©2026</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__hello mono" data-hero-fade style="--d:.25s">Hello, I'm</span>
+          <span class="hero__name" data-chars data-cursor="Poke!">AEJAZ</span>
+        </h1>
+
+        <div class="hero__bottom">
+          <p class="hero__intro" data-hero-fade style="--d:.55s">
+            A <span class="rotator" aria-hidden="true"><span>creative developer</span><span>UI/UX designer</span><span>motion enthusiast</span><span>problem solver</span></span><span class="sr-only">creative developer and designer</span>
+            crafting immersive, high-performance digital experiences — where clean code meets bold design.
+          </p>
+          <div class="hero__ctas" data-hero-fade style="--d:.7s">
+            <a href="#work" class="btn btn--primary" data-magnetic>
+              <span data-roll>Explore my work</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            </a>
+            <a href="#contact" class="btn btn--glass glass" data-magnetic><span data-roll>Get in touch</span></a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-cue" data-hero-fade style="--d:.9s" aria-label="Scroll to the about section">
+        <span class="scroll-cue__mouse"><i></i></span>
+        <span class="mono">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__row marquee__row--a glass" data-marquee="1">
+        <div class="marquee__track">
+          <div class="marquee__group">
+            <span>Creative Development</span><i>✦</i>
+            <span>UI / UX Design</span><i>✦</i>
+            <span>Motion Design</span><i>✦</i>
+            <span>WebGL &amp; 3D</span><i>✦</i>
+            <span>Design Systems</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+      <div class="marquee__row marquee__row--b glass" data-marquee="-1">
+        <div class="marquee__track">
+          <div class="marquee__group">
+            <span>Interfaces that feel alive</span><i>✺</i>
+            <span>Pixel perfect</span><i>✺</i>
+            <span>Performance first</span><i>✺</i>
+            <span>Accessible by default</span><i>✺</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section" id="about" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow mono" data-reveal>(01) — About me</span>
+          <h2 class="section-title" data-split data-reveal="split">Designer who codes.<br /><em>Developer who designs.</em></h2>
+        </header>
+
+        <div class="about__grid">
+          <div class="about__card" data-reveal="scale">
+            <!-- ✏️ Swap the "A" monogram for a photo: <img src="assets/me.jpg" alt="Aejaz" /> -->
+            <div class="id-card glass" data-tilt="12" data-flip data-cursor="Flip me" role="button" tabindex="0" aria-pressed="false" aria-label="Profile card — press to flip">
+              <div class="id-card__holo" aria-hidden="true"></div>
+              <div class="id-card__face id-card__face--front">
+                <div class="id-card__top mono"><span>Creative pass · 2026</span><span class="id-card__chip" aria-hidden="true"></span></div>
+                <div class="id-card__avatar"><span>A</span></div>
+                <div class="id-card__id">
+                  <strong class="id-card__name">Aejaz</strong>
+                  <span class="id-card__role">Creative Developer &amp; Designer</span>
+                </div>
+                <dl class="id-card__info">
+                  <div><dt>Focus</dt><dd>Web · Motion · 3D</dd></div>
+                  <div><dt>Status</dt><dd><i class="live-dot"></i>Open to work</dd></div>
+                </dl>
+                <div class="id-card__barcode" aria-hidden="true"></div>
+              </div>
+              <div class="id-card__face id-card__face--back">
+                <span class="mono id-card__kicker">// fun facts</span>
+                <ul class="facts">
+                  <li><span>☕</span>Turns coffee into clean code</li>
+                  <li><span>🎨</span>Sketches every idea before building it</li>
+                  <li><span>🌀</span>Thinks in springs &amp; easing curves</li>
+                  <li><span>🚀</span>Ships fast, polishes forever</li>
+                </ul>
+                <span class="mono id-card__hint">Tap to flip back ↺</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__content">
+            <p class="about__lead" data-scrub-words>I design and build digital experiences that feel alive — interfaces with personality, motion with purpose, and code as clean as the pixels it renders.</p>
+            <p class="about__body" data-reveal>
+              With a foot in both design and engineering, I bridge the gap between what looks incredible and what actually ships.
+              I obsess over the details — the easing of a hover, the 16ms budget of a frame, the moment someone smiles at a micro-interaction.
+              Off the clock you'll find me playing with generative art, shader experiments and far too many browser tabs.
+            </p>
+            <!-- ✏️ Update these numbers to your own -->
+            <div class="stats" data-spotlight-group>
+              <div class="stat glass" data-reveal style="--d:0s">
+                <span class="stat__num"><span data-count="5">0</span><sup>+</sup></span>
+                <span class="stat__label">Years crafting for the web</span>
+              </div>
+              <div class="stat glass" data-reveal style="--d:.08s">
+                <span class="stat__num"><span data-count="50">0</span><sup>+</sup></span>
+                <span class="stat__label">Projects shipped</span>
+              </div>
+              <div class="stat glass" data-reveal style="--d:.16s">
+                <span class="stat__num"><span data-count="30">0</span><sup>+</sup></span>
+                <span class="stat__label">Happy clients worldwide</span>
+              </div>
+              <div class="stat glass" data-reveal style="--d:.24s">
+                <span class="stat__num">∞</span>
+                <span class="stat__label">Ideas still brewing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK (pinned horizontal scroll) ============ -->
+    <section class="work" id="work" tabindex="-1">
+      <div class="work__pin">
+        <div class="work__sticky">
+          <div class="work__head container">
+            <div>
+              <span class="eyebrow mono" data-reveal>(02) — Selected work</span>
+              <h2 class="section-title" data-split data-reveal="split">Featured <em>projects</em></h2>
+            </div>
+            <div class="work__meta" data-reveal>
+              <span class="work__count mono"><span class="work__current">01</span> / <span class="work__total">05</span></span>
+              <div class="work__progress"><span></span></div>
+              <span class="work__hint mono">Keep scrolling →</span>
+            </div>
+          </div>
+
+          <div class="work__viewport">
+            <div class="work__track">
+
+              <!-- ✏️ Project 01 -->
+              <article class="project" data-reveal="scale">
+                <div class="project__card glass" data-tilt="8" data-cursor="Open">
+                  <div class="project__art art art--nebula">
+                    <div class="art__bg"></div>
+                    <div class="art__layer" data-depth="6"><div class="nebula-planet"></div><div class="nebula-ring"></div></div>
+                    <div class="art__layer art__layer--br" data-depth="16">
+                      <div class="mini-glass mini-stats">
+                        <span class="mono">Portfolio</span>
+                        <strong>$128,420</strong>
+                        <em>▲ 24.8%</em>
+                        <svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0 26 L12 21 L22 23 L34 15 L46 17 L58 9 L70 12 L82 5 L100 7" /></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="project__body">
+                    <div class="project__meta mono"><span>01</span><span>Fintech · Web App</span><span>2026</span></div>
+                    <h3 class="project__title">Nebula Finance</h3>
+                    <p class="project__desc">Real-time portfolio analytics with WebGL-powered data visualisation and buttery 120fps interactions.</p>
+                    <ul class="tags"><li>React</li><li>TypeScript</li><li>WebGL</li><li>D3</li></ul>
+                  </div>
+                  <button class="project__open" type="button" aria-label="Open the Nebula Finance case study">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </button>
+                </div>
+                <template class="project__details">
+                  <span class="eyebrow mono">Case study · 01</span>
+                  <h3 class="cs__title" id="modal-title">Nebula Finance</h3>
+                  <p class="cs__lead">A real-time portfolio analytics platform that makes complex market data feel calm, clear and — dare we say — fun.</p>
+                  <dl class="cs__meta">
+                    <div><dt>Role</dt><dd>Design &amp; Front-end Lead</dd></div>
+                    <div><dt>Timeline</dt><dd>4 months · 2026</dd></div>
+                    <div><dt>Stack</dt><dd>React, TypeScript, WebGL, D3</dd></div>
+                  </dl>
+                  <h4>The challenge</h4>
+                  <p>Traders were drowning in tables. The brief: turn thousands of live data points into something you can understand at a glance — without sacrificing depth for power users.</p>
+                  <h4>What I did</h4>
+                  <ul class="cs__list">
+                    <li>Designed a glanceable dashboard language built around motion and colour, not density.</li>
+                    <li>Built a custom WebGL chart renderer that streams 10k+ points at a steady 120fps.</li>
+                    <li>Shipped a keyboard-first command palette for power users.</li>
+                  </ul>
+                  <div class="cs__cta"><a href="#" class="btn btn--primary"><span>Visit live site</span></a><a href="#" class="btn btn--glass glass"><span>View code</span></a></div>
+                </template>
+              </article>
+
+              <!-- ✏️ Project 02 -->
+              <article class="project" data-reveal="scale">
+                <div class="project__card glass" data-tilt="8" data-cursor="Open">
+                  <div class="project__art art art--lumen">
+                    <div class="art__bg"></div>
+                    <div class="art__layer" data-depth="6">
+                      <div class="mini-glass mini-editor">
+                        <div class="mini-editor__bar"><i></i><i></i><i></i></div>
+                        <i style="--w:72%"></i><i style="--w:94%"></i><i style="--w:58%"></i><i style="--w:86%"></i><i class="is-typing" style="--w:42%"></i>
+                      </div>
+                    </div>
+                    <div class="art__layer art__layer--tr" data-depth="18"><div class="mini-glass mini-chip">✦ Suggest a better hook</div></div>
+                  </div>
+                  <div class="project__body">
+                    <div class="project__meta mono"><span>02</span><span>AI · Product Design</span><span>2025</span></div>
+                    <h3 class="project__title">Lumen</h3>
+                    <p class="project__desc">An AI writing companion that feels like a calm, focused room. Designed and engineered end-to-end.</p>
+                    <ul class="tags"><li>Next.js</li><li>LLM APIs</li><li>Framer Motion</li></ul>
+                  </div>
+                  <button class="project__open" type="button" aria-label="Open the Lumen case study">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </button>
+                </div>
+                <template class="project__details">
+                  <span class="eyebrow mono">Case study · 02</span>
+                  <h3 class="cs__title" id="modal-title">Lumen</h3>
+                  <p class="cs__lead">A distraction-free writing space where an AI collaborator whispers suggestions instead of shouting them.</p>
+                  <dl class="cs__meta">
+                    <div><dt>Role</dt><dd>Product Designer &amp; Engineer</dd></div>
+                    <div><dt>Timeline</dt><dd>6 months · 2025</dd></div>
+                    <div><dt>Stack</dt><dd>Next.js, Edge functions, LLM APIs</dd></div>
+                  </dl>
+                  <h4>The challenge</h4>
+                  <p>Most AI writing tools feel noisy and overbearing. Lumen needed to feel like a quiet, trusted editor sitting beside you.</p>
+                  <h4>What I did</h4>
+                  <ul class="cs__list">
+                    <li>Crafted an ambient UI where suggestions fade in only when you pause.</li>
+                    <li>Engineered streaming responses with optimistic, interruptible animations.</li>
+                    <li>Ran weekly usability sessions that shaped every interaction.</li>
+                  </ul>
+                  <div class="cs__cta"><a href="#" class="btn btn--primary"><span>Visit live site</span></a><a href="#" class="btn btn--glass glass"><span>View code</span></a></div>
+                </template>
+              </article>
+
+              <!-- ✏️ Project 03 -->
+              <article class="project" data-reveal="scale">
+                <div class="project__card glass" data-tilt="8" data-cursor="Open">
+                  <div class="project__art art art--orbit">
+                    <div class="art__bg"></div>
+                    <div class="art__layer" data-depth="6"><div class="orbit-sys"><span></span><span></span><span></span><b></b></div></div>
+                    <div class="art__layer art__layer--bl" data-depth="16">
+                      <div class="mini-glass mini-swatches"><span class="mono">Finish</span><i></i><i></i><i></i><i></i></div>
+                    </div>
+                  </div>
+                  <div class="project__body">
+                    <div class="project__meta mono"><span>03</span><span>E-commerce · 3D</span><span>2025</span></div>
+                    <h3 class="project__title">Orbit Studio</h3>
+                    <p class="project__desc">An interactive 3D product configurator that lets shoppers spin, style and fall in love before they buy.</p>
+                    <ul class="tags"><li>Three.js</li><li>GSAP</li><li>Shopify</li></ul>
+                  </div>
+                  <button class="project__open" type="button" aria-label="Open the Orbit Studio case study">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </button>
+                </div>
+                <template class="project__details">
+                  <span class="eyebrow mono">Case study · 03</span>
+                  <h3 class="cs__title" id="modal-title">Orbit Studio</h3>
+                  <p class="cs__lead">A real-time 3D configurator that turns browsing into playing.</p>
+                  <dl class="cs__meta">
+                    <div><dt>Role</dt><dd>Creative Developer</dd></div>
+                    <div><dt>Timeline</dt><dd>3 months · 2025</dd></div>
+                    <div><dt>Stack</dt><dd>Three.js, GSAP, Shopify</dd></div>
+                  </dl>
+                  <h4>The challenge</h4>
+                  <p>Static product photos couldn't show off dozens of materials and finishes. The client wanted shoppers to feel the product through the screen.</p>
+                  <h4>What I did</h4>
+                  <ul class="cs__list">
+                    <li>Built a lightweight PBR scene that loads in under two seconds on mobile.</li>
+                    <li>Designed gesture-friendly controls for spinning, zooming and swapping finishes.</li>
+                    <li>Connected configurations straight to the Shopify cart.</li>
+                  </ul>
+                  <div class="cs__cta"><a href="#" class="btn btn--primary"><span>Visit live site</span></a><a href="#" class="btn btn--glass glass"><span>View code</span></a></div>
+                </template>
+              </article>
+
+              <!-- ✏️ Project 04 -->
+              <article class="project" data-reveal="scale">
+                <div class="project__card glass" data-tilt="8" data-cursor="Open">
+                  <div class="project__art art art--prism">
+                    <div class="art__bg"></div>
+                    <div class="art__layer" data-depth="5"><div class="prism-shape"></div></div>
+                    <div class="art__layer art__layer--r" data-depth="15">
+                      <div class="ds-stack">
+                        <span class="mini-glass ds-btn">Button</span>
+                        <span class="mini-glass ds-toggle"><i></i></span>
+                        <span class="mini-glass ds-input">Search…</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="project__body">
+                    <div class="project__meta mono"><span>04</span><span>Design System</span><span>2024</span></div>
+                    <h3 class="project__title">Prism UI</h3>
+                    <p class="project__desc">A themeable, accessible component library and token pipeline powering a family of products.</p>
+                    <ul class="tags"><li>Figma</li><li>Storybook</li><li>React</li><li>Tokens</li></ul>
+                  </div>
+                  <button class="project__open" type="button" aria-label="Open the Prism UI case study">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </button>
+                </div>
+                <template class="project__details">
+                  <span class="eyebrow mono">Case study · 04</span>
+                  <h3 class="cs__title" id="modal-title">Prism UI</h3>
+                  <p class="cs__lead">One source of truth for design and code — from Figma variables to production components.</p>
+                  <dl class="cs__meta">
+                    <div><dt>Role</dt><dd>Design Systems Lead</dd></div>
+                    <div><dt>Timeline</dt><dd>Ongoing · 2024</dd></div>
+                    <div><dt>Stack</dt><dd>Figma, Storybook, React, Style Dictionary</dd></div>
+                  </dl>
+                  <h4>The challenge</h4>
+                  <p>Several product teams were reinventing the same buttons in slightly different shades of blue.</p>
+                  <h4>What I did</h4>
+                  <ul class="cs__list">
+                    <li>Defined a token architecture that supports multiple brands and dark mode.</li>
+                    <li>Built 40+ accessible components with documentation and visual tests.</li>
+                    <li>Automated the Figma-to-code pipeline so designers and devs stay in sync.</li>
+                  </ul>
+                  <div class="cs__cta"><a href="#" class="btn btn--primary"><span>View docs</span></a><a href="#" class="btn btn--glass glass"><span>View code</span></a></div>
+                </template>
+              </article>
+
+              <!-- ✏️ Project 05 -->
+              <article class="project" data-reveal="scale">
+                <div class="project__card glass" data-tilt="8" data-cursor="Open">
+                  <div class="project__art art art--pulse">
+                    <div class="art__bg"></div>
+                    <div class="art__layer" data-depth="6">
+                      <svg class="pulse-line" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50 H95 L108 22 L122 84 L136 8 L150 72 L162 50 H300" /></svg>
+                    </div>
+                    <div class="art__layer art__layer--tr" data-depth="16">
+                      <div class="mini-glass mini-ring">
+                        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="32" /><circle class="fill" cx="40" cy="40" r="32" /></svg>
+                        <span><strong>72</strong>bpm</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="project__body">
+                    <div class="project__meta mono"><span>05</span><span>Health · Mobile</span><span>2024</span></div>
+                    <h3 class="project__title">Pulse</h3>
+                    <p class="project__desc">A wellness app that turns heart-rate data into generative art and gentle, human nudges.</p>
+                    <ul class="tags"><li>React Native</li><li>Skia</li><li>Reanimated</li></ul>
+                  </div>
+                  <button class="project__open" type="button" aria-label="Open the Pulse case study">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </button>
+                </div>
+                <template class="project__details">
+                  <span class="eyebrow mono">Case study · 05</span>
+                  <h3 class="cs__title" id="modal-title">Pulse</h3>
+                  <p class="cs__lead">Health data, reimagined as something you actually want to look at.</p>
+                  <dl class="cs__meta">
+                    <div><dt>Role</dt><dd>Lead Designer &amp; Mobile Dev</dd></div>
+                    <div><dt>Timeline</dt><dd>5 months · 2024</dd></div>
+                    <div><dt>Stack</dt><dd>React Native, Skia, Reanimated</dd></div>
+                  </dl>
+                  <h4>The challenge</h4>
+                  <p>Charts and numbers made users anxious. Pulse needed to encourage healthy habits without guilt.</p>
+                  <h4>What I did</h4>
+                  <ul class="cs__list">
+                    <li>Designed a generative art system driven by each user's daily rhythm.</li>
+                    <li>Built silky 60fps animations with Skia and Reanimated worklets.</li>
+                    <li>Wrote a tone-of-voice guide for kind, non-judgemental notifications.</li>
+                  </ul>
+                  <div class="cs__cta"><a href="#" class="btn btn--primary"><span>App Store</span></a><a href="#" class="btn btn--glass glass"><span>View code</span></a></div>
+                </template>
+              </article>
+
+              <div class="work__more">
+                <a href="#" class="more-circle glass" data-magnetic="0.25" data-cursor="Let's go">
+                  <span>More work<br />on GitHub</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS (bento) ============ -->
+    <section class="skills section" id="skills" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow mono" data-reveal>(03) — Skills &amp; services</span>
+          <h2 class="section-title" data-split data-reveal="split">A toolkit tuned<br />for <em>wow.</em></h2>
+        </header>
+
+        <div class="bento" data-spotlight-group>
+          <article class="tile tile--code glass" data-reveal>
+            <div class="tile__head">
+              <span class="tile__icon mono">&lt;/&gt;</span>
+              <h3>Frontend Engineering</h3>
+            </div>
+            <p>Pixel-perfect, accessible and blazing-fast interfaces, built with modern frameworks and a love for clean architecture.</p>
+            <div class="code-window">
+              <div class="code-window__bar"><i></i><i></i><i></i><span class="mono">aejaz.ts</span></div>
+              <pre class="code mono"><code data-typer></code></pre>
+            </div>
+            <ul class="chips">
+              <li>TypeScript</li><li>React</li><li>Next.js</li><li>Vue</li><li>Svelte</li><li>Node.js</li><li>Tailwind</li><li>GraphQL</li>
+            </ul>
+          </article>
+
+          <article class="tile tile--particles glass" data-reveal style="--d:.08s" data-cursor="Play">
+            <canvas class="particles" data-particles aria-hidden="true"></canvas>
+            <div class="tile__overlay">
+              <div class="tile__head">
+                <span class="tile__icon mono">✺</span>
+                <h3>Creative Coding</h3>
+              </div>
+              <p>Generative art, shaders &amp; playful physics. <span class="hint mono">Move through the field ↗</span></p>
+            </div>
+          </article>
+
+          <article class="tile tile--design glass" data-reveal style="--d:.12s">
+            <div class="tile__head">
+              <span class="tile__icon mono">◐</span>
+              <h3>UI / UX Design</h3>
+            </div>
+            <p>Research-led, systems-minded, detail-obsessed.</p>
+            <div class="specimen">
+              <span class="specimen__aa">Aa</span>
+              <div class="swatches"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </article>
+
+          <article class="tile tile--motion glass" data-reveal style="--d:.16s">
+            <div class="tile__head">
+              <span class="tile__icon mono">∿</span>
+              <h3>Motion &amp; Interaction</h3>
+            </div>
+            <div class="easing">
+              <svg class="easing__graph" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path class="easing__curve" d="" /></svg>
+              <div class="easing__track"><span class="easing__ball"></span></div>
+              <div class="easing__btns" role="group" aria-label="Choose an easing curve">
+                <button type="button" class="is-active" data-ease="expo">Expo</button>
+                <button type="button" data-ease="elastic">Elastic</button>
+                <button type="button" data-ease="bounce">Bounce</button>
+                <button type="button" data-ease="back">Back</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--orbit glass" data-reveal style="--d:.08s">
+            <div class="tile__text">
+              <div class="tile__head">
+                <span class="tile__icon mono">◎</span>
+                <h3>Tech Universe</h3>
+              </div>
+              <p>The tools I reach for every day — and the ones I can't stop experimenting with.</p>
+            </div>
+            <div class="orbit" aria-hidden="true">
+              <div class="orbit__core">A</div>
+              <div class="orbit__ring" style="--r:72px;--dur:22s">
+                <span style="--a:0deg">TS</span><span style="--a:90deg">JS</span><span style="--a:180deg">▲</span><span style="--a:270deg">CSS</span>
+              </div>
+              <div class="orbit__ring orbit__ring--outer" style="--r:124px;--dur:38s">
+                <span style="--a:30deg">GSAP</span><span style="--a:90deg">3D</span><span style="--a:150deg">Fig</span><span style="--a:210deg">Node</span><span style="--a:270deg">GL</span><span style="--a:330deg">Vue</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--perf glass" data-reveal style="--d:.16s">
+            <div class="tile__head">
+              <span class="tile__icon mono">⚡</span>
+              <h3>Performance Obsessed</h3>
+            </div>
+            <p>Fast is a feature. Every build is tuned for Core Web Vitals and real-world devices.</p>
+            <div class="gauges">
+              <div class="gauge" data-score="100"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gauge__track" cx="40" cy="40" r="34" /><circle class="gauge__bar" cx="40" cy="40" r="34" /></svg><span class="gauge__num">0</span><span class="gauge__label mono">Perf</span></div>
+              <div class="gauge" data-score="100"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gauge__track" cx="40" cy="40" r="34" /><circle class="gauge__bar" cx="40" cy="40" r="34" /></svg><span class="gauge__num">0</span><span class="gauge__label mono">A11y</span></div>
+              <div class="gauge" data-score="100"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gauge__track" cx="40" cy="40" r="34" /><circle class="gauge__bar" cx="40" cy="40" r="34" /></svg><span class="gauge__num">0</span><span class="gauge__label mono">Best</span></div>
+              <div class="gauge" data-score="100"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gauge__track" cx="40" cy="40" r="34" /><circle class="gauge__bar" cx="40" cy="40" r="34" /></svg><span class="gauge__num">0</span><span class="gauge__label mono">SEO</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="experience section" id="experience" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow mono" data-reveal>(04) — Journey</span>
+          <h2 class="section-title" data-split data-reveal="split">Where I've been<br /><em>making noise.</em></h2>
+        </header>
+
+        <!-- ✏️ Replace with your real experience -->
+        <div class="timeline">
+          <div class="timeline__line" aria-hidden="true"><span class="timeline__fill"></span></div>
+
+          <article class="tl-item">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-card glass" data-reveal="left">
+              <span class="tl-date mono">2024 — Present</span>
+              <h3>Senior Creative Developer</h3>
+              <p class="tl-company">Independent · Remote</p>
+              <p>Partnering with startups, agencies and founders to design and engineer award-worthy websites, product interfaces and interactive campaigns.</p>
+              <ul class="tags"><li>Next.js</li><li>WebGL</li><li>GSAP</li></ul>
+            </div>
+          </article>
+
+          <article class="tl-item">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-card glass" data-reveal="right">
+              <span class="tl-date mono">2022 — 2024</span>
+              <h3>Frontend Engineer</h3>
+              <p class="tl-company">Nova Labs</p>
+              <p>Led the rebuild of a data-heavy SaaS dashboard, cutting load times dramatically and introducing a motion-driven design system adopted across teams.</p>
+              <ul class="tags"><li>React</li><li>TypeScript</li><li>Design Systems</li></ul>
+            </div>
+          </article>
+
+          <article class="tl-item">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-card glass" data-reveal="left">
+              <span class="tl-date mono">2020 — 2022</span>
+              <h3>UI/UX Designer &amp; Developer</h3>
+              <p class="tl-company">Pixel &amp; Co. Studio</p>
+              <p>Designed and shipped marketing sites and mobile apps, bridging design and engineering with high-fidelity, coded prototypes.</p>
+              <ul class="tags"><li>Figma</li><li>Vue</li><li>Prototyping</li></ul>
+            </div>
+          </article>
+
+          <article class="tl-item">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-card glass" data-reveal="right">
+              <span class="tl-date mono">2019</span>
+              <h3>Hello, World.</h3>
+              <p class="tl-company">Where it all began</p>
+              <p>Wrote my first line of HTML, broke everything, fixed it — and fell head over heels for the web. Never looked back.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>Curiosity</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section" id="contact" tabindex="-1">
+      <div class="container">
+        <span class="eyebrow mono" data-reveal>(05) — Contact</span>
+        <h2 class="contact__title">
+          <span class="contact__line" data-split data-reveal="split">Have an idea?</span>
+          <span class="contact__line" data-split data-reveal="split">Let's make it <em>unforgettable.</em></span>
+        </h2>
+
+        <div class="contact__grid">
+          <form class="contact__form glass" id="contact-form" data-reveal novalidate>
+            <div class="form__row">
+              <div class="field">
+                <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" required />
+                <label for="f-name">Your name</label>
+              </div>
+              <div class="field">
+                <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required />
+                <label for="f-email">Email address</label>
+              </div>
+            </div>
+            <fieldset class="budget">
+              <legend class="mono">Project budget</legend>
+              <div class="budget__opts">
+                <label><input type="radio" name="budget" value="< $5k" /><span>&lt; $5k</span></label>
+                <label><input type="radio" name="budget" value="$5k – $15k" checked /><span>$5k – $15k</span></label>
+                <label><input type="radio" name="budget" value="$15k – $50k" /><span>$15k – $50k</span></label>
+                <label><input type="radio" name="budget" value="$50k+" /><span>$50k+</span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <textarea id="f-msg" name="message" rows="5" placeholder=" " required></textarea>
+              <label for="f-msg">Tell me about your project</label>
+            </div>
+            <button type="submit" class="btn btn--primary btn--submit" data-magnetic="0.2">
+              <span class="btn__label">Send message</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
+            </button>
+          </form>
+
+          <aside class="contact__side">
+            <p class="contact__note" data-reveal>Currently booking projects for 2026–27. Tell me about yours — I usually reply within 24 hours.</p>
+
+            <button type="button" class="email-card glass" data-copy="hello@aejaz.dev" data-reveal data-cursor="Copy">
+              <span class="mono email-card__label">Email me</span>
+              <span class="email-card__address">hello@aejaz.dev</span>
+              <span class="email-card__hint mono">Click to copy ⧉</span>
+            </button>
+
+            <!-- ✏️ Add your profile URLs -->
+            <ul class="socials" data-spotlight-group>
+              <li data-reveal style="--d:.0s">
+                <a href="#" class="social glass" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+                  <span>GitHub</span><em class="mono">@aejaz</em>
+                </a>
+              </li>
+              <li data-reveal style="--d:.06s">
+                <a href="#" class="social glass" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                  <span>LinkedIn</span><em class="mono">in/aejaz</em>
+                </a>
+              </li>
+              <li data-reveal style="--d:.12s">
+                <a href="#" class="social glass" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32M8.56 2.75c4.37 6 6 9.42 8 17.72" /></svg>
+                  <span>Dribbble</span><em class="mono">@aejaz</em>
+                </a>
+              </li>
+              <li data-reveal style="--d:.18s">
+                <a href="#" class="social glass" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l11.733 16H20L8.267 4z" /><path d="M4 20l6.768-6.768M13.228 10.772 20 4" /></svg>
+                  <span>X / Twitter</span><em class="mono">@aejaz</em>
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <p class="footer__cta" data-reveal>Got a project in mind? <a href="#contact" class="link-underline">Let's talk ↗</a></p>
+        <button type="button" class="to-top glass" data-magnetic="0.35" data-cursor="Up!" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+        </button>
+      </div>
+      <div class="footer__name" data-chars>AEJAZ</div>
+      <div class="footer__bottom mono">
+        <span>© <span data-year>2026</span> Aejaz. All rights reserved.</span>
+        <span class="footer__egg">psst… type “aejaz” anywhere ✦</span>
+        <span>Designed &amp; built with ♥</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ Project modal ============ -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel glass">
+      <button type="button" class="modal__close" data-close aria-label="Close case study" data-magnetic="0.3">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+      <div class="modal__scroll" data-native-scroll>
+        <div class="modal__content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/background.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
