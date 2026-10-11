@@ -669,12 +669,12 @@
       }
     });
 
-    initShapes(hero);
+    initShapes(hero, fx);
     initRotator();
   }
 
-  /* Draggable, throwable glass shapes */
-  function initShapes(hero) {
+  /* Draggable, throwable glass shapes — swipe the cursor into one and it gets knocked away */
+  function initShapes(hero, fx) {
     const els = qsa('[data-shape]', hero);
     if (!els.length) return;
     let W = hero.offsetWidth;
@@ -688,7 +688,8 @@
       depth: parseFloat(el.dataset.depth) || 1,
       rot: parseFloat(el.dataset.rot) || 0,
       spin: parseFloat(el.dataset.spin) || 0,
-      x: 0, y: 0, vx: 0, vy: 0, vr: 0, w: 0, h: 0, px: 0, py: 0, ox: 0, oy: 0,
+      x: 0, y: 0, vx: 0, vy: 0, vr: 0, w: 0, h: 0, px: 0, py: 0, ox: 0, oy: 0, hx: 0, hy: 0,
+      sc: 1, sq: 0, sv: 0, cool: 0,
       phase: i * 1.37, drag: null,
     }));
 
@@ -702,9 +703,11 @@
       shapes.forEach((s) => {
         s.w = s.el.offsetWidth;
         s.h = s.el.offsetHeight;
+        s.hx = (compact ? s.mfx : s.fx) * nW - s.w / 2;
+        s.hy = (compact ? s.mfy : s.fy) * nH - s.h / 2;
         if (relayout) {
-          s.x = (compact ? s.mfx : s.fx) * nW - s.w / 2;
-          s.y = (compact ? s.mfy : s.fy) * nH - s.h / 2;
+          s.x = s.hx;
+          s.y = s.hy;
           s.vx = s.vy = 0;
         } else if (W && H) { s.x *= nW / W; s.y *= nH / H; }
       });
@@ -725,6 +728,7 @@
           gy: e.clientY + scroll.y - (s.y + s.oy),
         };
         s.vx = s.vy = 0;
+        s.cool = 0.4;
         s.el.classList.add('is-dragging');
       });
       s.el.addEventListener('pointermove', (e) => {
@@ -740,21 +744,36 @@
         const max = 3400;
         if (sp > max) { s.vx *= max / sp; s.vy *= max / sp; }
         s.vr += s.vx * 0.06;
+        s.cool = 0.4; // don't let the throwing hand also swat it
       };
       s.el.addEventListener('pointerup', release);
       s.el.addEventListener('pointercancel', release);
       s.el.addEventListener('lostpointercapture', release);
     });
 
+    // Cursor velocity (px/s), smoothed — how hard a swipe "hits"
+    let lpx = pointer.x;
+    let lpy = pointer.y;
+    let cvx = 0;
+    let cvy = 0;
+
     let lastY = -1;
     onTick((dt, t) => {
+      if (dt > 0) {
+        cvx = damp(cvx, (pointer.x - lpx) / dt, 18, dt);
+        cvy = damp(cvy, (pointer.y - lpy) / dt, 18, dt);
+      }
+      lpx = pointer.x;
+      lpy = pointer.y;
       const sy = scroll.y;
       if (sy > H * 1.2 && lastY > H * 1.2) return;
       lastY = sy;
       const mx = pointer.x / window.innerWidth - 0.5;
       const my = pointer.y / window.innerHeight - 0.5;
       const live = finePointer && !reduceMotion;
+      const cSpeed = Math.hypot(cvx, cvy);
       for (const s of shapes) {
+        s.cool = Math.max(0, s.cool - dt);
         s.px = damp(s.px, live ? -mx * 50 * s.depth : 0, 3, dt);
         s.py = damp(s.py, live ? -my * 50 * s.depth : 0, 3, dt);
         const float = reduceMotion ? 0 : Math.sin(t * 0.8 + s.phase) * 14 * s.depth;
@@ -768,6 +787,36 @@
           s.vy = lerp(s.vy, (ny - s.y) / dt, 0.4);
           s.x = nx; s.y = ny;
         } else {
+          // Hit: the cursor swipes into the shape fast enough → knock it away
+          const dx = s.x + s.ox + s.w / 2 - pointer.x;
+          const dy = s.y + s.oy + s.h / 2 - sy - pointer.y;
+          const d = Math.hypot(dx, dy) || 1;
+          const r = (s.w + s.h) / 4;
+          if (live && pointer.active && !s.cool && cSpeed > 160 && d < r + 64) {
+            const nx = dx / d;
+            const ny = dy / d;
+            const toward = cvx * nx + cvy * ny; // > 0 when the cursor moves into the shape
+            if (toward > -cSpeed * 0.2) {
+              const power = Math.max(toward, cSpeed * 0.4);
+              const kick = Math.min(3400, (480 + power * 1.25) * clamp(110 / r, 0.75, 1.6));
+              // Fly off mostly away from the cursor, partly along the swing
+              let kx = nx * 0.65 + (cvx / cSpeed) * 0.35;
+              let ky = ny * 0.65 + (cvy / cSpeed) * 0.35;
+              const kl = Math.hypot(kx, ky) || 1;
+              kx /= kl; ky /= kl;
+              s.vx += kx * kick;
+              s.vy += ky * kick;
+              const sp = Math.hypot(s.vx, s.vy);
+              if (sp > 3800) { s.vx *= 3800 / sp; s.vy *= 3800 / sp; }
+              s.vr += (nx * cvy - ny * cvx) * 0.08;
+              s.sv += kick * 0.0012;
+              s.cool = 0.22;
+              if (power > 900 && fx) fx.confetti(pointer.x + nx * r * 0.6, pointer.y + ny * r * 0.6, 10, 0.4);
+            }
+          }
+          // Drift home so a scattered hero always settles back into place
+          s.vx += (s.hx - s.x) * 0.9 * dt;
+          s.vy += (s.hy - s.y) * 0.9 * dt;
           s.x += s.vx * dt;
           s.y += s.vy * dt;
           const fr = Math.pow(0.16, dt);
@@ -783,7 +832,13 @@
           s.vr = damp(s.vr, 0, 1.4, dt);
           s.rot += (reduceMotion ? 0 : s.spin + s.vr) * dt;
         }
-        s.el.style.transform = `translate3d(${(s.x + s.ox).toFixed(1)}px, ${(s.y + s.oy).toFixed(1)}px, 0) rotate(${s.rot.toFixed(2)}deg)`;
+        // Jelly squash after a hit (damped spring) + grab lift. Scaling inside the
+        // transform keeps it local; the CSS `scale` property would also scale the translate.
+        s.sv += (-320 * s.sq - 14 * s.sv) * dt;
+        s.sq += s.sv * dt;
+        s.sc = damp(s.sc, s.drag ? 1.08 : 1, 10, dt);
+        const k = s.sc * (1 + s.sq);
+        s.el.style.transform = `translate3d(${(s.x + s.ox).toFixed(1)}px, ${(s.y + s.oy).toFixed(1)}px, 0) rotate(${s.rot.toFixed(2)}deg) scale(${k.toFixed(4)})`;
       }
     });
   }
@@ -1011,14 +1066,14 @@
      ------------------------------------------------------------------ */
   const CODE = [
     ['k', 'const '], ['v', 'aejaz'], ['p', ' = {\n'],
-    ['', '  role: '], ['s', "'Creative Developer'"], ['p', ',\n'],
-    ['', '  stack: ['], ['s', "'TypeScript'"], ['p', ', '], ['s', "'React'"], ['p', ', '], ['s', "'WebGL'"], ['p', '],\n'],
-    ['', '  loves: ['], ['s', "'design'"], ['p', ', '], ['s', "'motion'"], ['p', ', '], ['s', "'details'"], ['p', '],\n'],
-    ['', '  coffee: '], ['n', 'Infinity'], ['p', ',\n'],
+    ['', '  role: '], ['s', "'Friendly Neighbourhood Dev'"], ['p', ',\n'],
+    ['', '  from: '], ['s', "'Nepal'"], ['p', ', '], ['', 'at: '], ['s', "'Amrita, BLR'"], ['p', ',\n'],
+    ['', '  stack: ['], ['s', "'TypeScript'"], ['p', ', '], ['s', "'React'"], ['p', ', '], ['s', "'Python'"], ['p', '],\n'],
+    ['', '  mode: '], ['s', "'ataraxia'"], ['p', ',\n'],
     ['f', '  build'], ['p', '(idea) {\n'],
-    ['k', '    return '], ['', 'idea.'], ['f', 'toAwesome'], ['p', '();\n'],
+    ['k', '    return '], ['', 'idea.'], ['f', 'ship'], ['p', '({ '], ['', 'responsibly: '], ['n', 'true'], ['p', ' });\n'],
     ['p', '  },\n};\n\n'],
-    ['c', "// → let's build something great"],
+    ['c', '// → interfaces first, systems when needed'],
   ];
 
   function initTyper() {
@@ -1292,14 +1347,14 @@
         const name = String(data.get('name') || '').trim();
         const email = String(data.get('email') || '').trim();
         const msg = String(data.get('message') || '').trim();
-        const budget = data.get('budget') || 'Not sure yet';
+        const budget = data.get('budget') || 'Hello';
         const btn = qs('.btn--submit', form);
         const label = qs('.btn__label', btn);
         btn.classList.add('is-sending');
         label.textContent = 'Sending…';
         setTimeout(() => {
-          const subject = `New project enquiry — ${name}`;
-          const body = `Hi Aejaz,\n\n${msg}\n\nBudget: ${budget}\n\n— ${name}\n${email}`;
+          const subject = `${budget} — from ${name}`;
+          const body = `Hi Aejaz,\n\n${msg}\n\nTopic: ${budget}\n\n— ${name}\n${email}`;
           window.location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           btn.classList.remove('is-sending');
           label.textContent = 'Message ready ✓';
@@ -1467,8 +1522,8 @@
     });
 
     // Hello, fellow developer
-    console.log('%c✦ Aejaz', 'font: 700 30px system-ui, sans-serif; color: #8b6cff;');
-    console.log(`%cPeeking under the hood? I like you already. Let's build something → ${CONFIG.email}\n(psst: type "aejaz" on the page)`, 'color: #9aa; font-size: 12px;');
+    console.log('%c🕷 Aejaz', 'font: 700 30px system-ui, sans-serif; color: #ff8a4c;');
+    console.log(`%cPeeking under the hood? Whoever you are, I could use a hand → ${CONFIG.email}\n(psst: type "aejaz" on the page)`, 'color: #9aa; font-size: 12px;');
 
     return { confetti, party };
   }

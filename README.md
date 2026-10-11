@@ -1,5 +1,7 @@
 # Aejaz — Portfolio
 
+Personal site of **Aejaz Ahmad Ansari** ([@dedsecpy](https://github.com/dedsecpy)), web developer and AI & Data Science student at Amrita Vishwa Vidyapeetham, Bengaluru.
+
 A glassmorphism portfolio with a live WebGL background, a custom cursor, physics, and scroll-driven scenes.
 It's plain HTML/CSS/JS with **no build step and no dependencies**. Double-click `index.html` to run it.
 
@@ -9,21 +11,21 @@ css/style.css       ← design system (colours, glass, layout, responsive)
 js/background.js    ← WebGL aurora background
 js/main.js          ← interactions (scroll, cursor, physics, modal, form…)
 assets/favicon.svg
+assets/avatar.jpg   ← ID-card avatar (same as GitHub)
 ```
 
-## Make it yours
-
-Search `index.html` for `✏️`. Those comments mark every spot that needs your real details.
+## Updating content
 
 | What | Where |
 | --- | --- |
 | Email address | `index.html` (search `hello@aejaz.dev`) **and** `CONFIG.email` at the top of `js/main.js` |
-| Social links | `.socials` in the Contact section. Replace `href="#"` with your URLs |
-| Stats (5+ years, 50+ projects…) | `.stats` in the About section (`data-count="…"`) |
+| Social links | `.socials` in the Contact section |
+| Stats (years on GitHub, repos…) | `.stats` in the About section (`data-count="…"`) |
 | Projects | Each `<article class="project">` in the Work section. The `<template>` inside holds the case-study modal content |
-| Experience | Each `<article class="tl-item">` in the Journey section |
-| Photo | In the ID card, replace `<span>A</span>` with `<img src="assets/me.jpg" alt="Aejaz" />` |
-| Colour palettes | `CONFIG.palettes` in `js/main.js` |
+| Journey | Each `<article class="tl-item">` in the Journey section |
+| Avatar | `assets/avatar.jpg`, used in the About ID card |
+| Typing code snippet | `CODE` in `js/main.js` |
+| Colour palettes | `CONFIG.palettes` in `js/main.js` (Sunset is the default) |
 | Rotating hero roles | `.rotator` spans in the hero |
 
 Any link still set to `href="#"` shows a "Link coming soon" toast instead of jumping to the top.
