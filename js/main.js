@@ -15,8 +15,8 @@
   const CONFIG = {
     email: 'hello@aejaz.dev',
     palettes: [
-      { name: 'Aurora', css: ['#8b6cff', '#2fd6ff', '#ff5fb7'], gl: ['#06050e', '#4b2fd8', '#0a8fd1', '#c02a86', '#1d2fa8'] },
       { name: 'Sunset', css: ['#ff8a4c', '#ff4f8b', '#ffc65c'], gl: ['#0b0507', '#c4421a', '#b5175a', '#d98a1c', '#5a1aa8'] },
+      { name: 'Aurora', css: ['#8b6cff', '#2fd6ff', '#ff5fb7'], gl: ['#06050e', '#4b2fd8', '#0a8fd1', '#c02a86', '#1d2fa8'] },
       { name: 'Ocean', css: ['#2ee6c8', '#3b9bff', '#7cf0ff'], gl: ['#030a0e', '#008c7e', '#0a55c4', '#06a3c4', '#2a1fa0'] },
       { name: 'Citrus', css: ['#c6ff4a', '#2ef0a0', '#3bc4ff'], gl: ['#050906', '#4f8f00', '#00936a', '#0a7fb8', '#2b5c12'] },
     ],
@@ -1360,7 +1360,7 @@
     const P = CONFIG.palettes;
     const meta = qs('meta[name="theme-color"]');
     let idx = 0;
-    try { idx = (parseInt(localStorage.getItem('aejaz:palette'), 10) || 0) % P.length; } catch (_) { /* private mode */ }
+    try { idx = Math.max(0, P.findIndex((p) => p.name === localStorage.getItem('aejaz:palette'))); } catch (_) { /* private mode */ }
     const apply = (i, instant) => {
       const p = P[i];
       ['--a1', '--a2', '--a3'].forEach((v, j) => root.style.setProperty(v, p.css[j]));
@@ -1371,7 +1371,7 @@
     btn?.addEventListener('click', () => {
       idx = (idx + 1) % P.length;
       apply(idx, false);
-      try { localStorage.setItem('aejaz:palette', String(idx)); } catch (_) { /* noop */ }
+      try { localStorage.setItem('aejaz:palette', P[idx].name); } catch (_) { /* noop */ }
       toast(`🎨 Palette — ${P[idx].name}`);
     });
   }

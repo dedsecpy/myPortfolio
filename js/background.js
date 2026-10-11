@@ -172,7 +172,7 @@
 
   const state = {
     time: Math.random() * 100,
-    colors: ['#06050e', '#4b2fd8', '#0a8fd1', '#c02a86', '#1d2fa8'].map(hexToRgb),
+    colors: ['#0b0507', '#c4421a', '#b5175a', '#d98a1c', '#5a1aa8'].map(hexToRgb),
     target: null,
     party: 0,
     partyTarget: 0,

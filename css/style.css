@@ -4,9 +4,9 @@
    ========================================================================== */
 
 /* Animatable accent colours (palette switcher transitions through these) */
-@property --a1 { syntax: '<color>'; inherits: true; initial-value: #8b6cff; }
-@property --a2 { syntax: '<color>'; inherits: true; initial-value: #2fd6ff; }
-@property --a3 { syntax: '<color>'; inherits: true; initial-value: #ff5fb7; }
+@property --a1 { syntax: '<color>'; inherits: true; initial-value: #ff8a4c; }
+@property --a2 { syntax: '<color>'; inherits: true; initial-value: #ff4f8b; }
+@property --a3 { syntax: '<color>'; inherits: true; initial-value: #ffc65c; }
 
 :root {
   --bg: #07060f;
@@ -15,9 +15,9 @@
   --faint: rgba(245, 243, 255, 0.42);
   --line: rgba(255, 255, 255, 0.12);
 
-  --a1: #8b6cff;
-  --a2: #2fd6ff;
-  --a3: #ff5fb7;
+  --a1: #ff8a4c;
+  --a2: #ff4f8b;
+  --a3: #ffc65c;
   --grad: linear-gradient(120deg, var(--a1), var(--a2) 55%, var(--a3));
 
   --font-display: 'Clash Display', 'Satoshi', ui-sans-serif, system-ui, sans-serif;
@@ -439,16 +439,12 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
   min-height: 100vh; min-height: 100svh;
   padding-top: calc(var(--nav-h) + 56px); padding-bottom: clamp(36px, 6vh, 64px);
 }
-.hero__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
-.status-pill {
-  --radius: 999px; --blur: 14px;
-  display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; font-size: .9rem; font-weight: 500;
-}
-.status-pill__dot, .live-dot {
+.hero__top { display: flex; justify-content: flex-end; align-items: flex-start; gap: 20px; }
+.live-dot {
   position: relative; width: 9px; height: 9px; border-radius: 50%; background: #3ef08f; flex: none;
   box-shadow: 0 0 10px #3ef08f;
 }
-.status-pill__dot::after, .live-dot::after {
+.live-dot::after {
   content: ""; position: absolute; inset: 0; border-radius: 50%; background: #3ef08f;
   animation: ping 1.8s var(--ease-out) infinite;
 }
@@ -1103,7 +1099,6 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
   .stat { min-height: 128px; padding: 18px; }
   .hero__ctas { width: 100%; }
   .hero__ctas .btn { flex: 1 1 auto; }
-  .status-pill { font-size: .8rem; }
   .footer__top { flex-direction: row; align-items: center; }
   .footer__bottom { flex-direction: column; }
   .marquee { padding-block: 48px; }
